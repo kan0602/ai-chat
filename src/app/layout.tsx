@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Chat",
+  title: "Su-techs AI Chat",
   description: "エンターテイメント向けAIチャットボット",
 };
 

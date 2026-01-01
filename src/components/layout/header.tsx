@@ -16,7 +16,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
-            AI Chat
+            Su-techs AI Chat
           </span>
         </Link>
 

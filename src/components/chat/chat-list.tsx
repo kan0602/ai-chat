@@ -35,7 +35,7 @@ export function ChatList({
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h2 className="mb-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
-              AI Chat へようこそ
+              Su-techs AI Chat へようこそ
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
               メッセージを送信して会話を始めましょう

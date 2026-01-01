@@ -306,40 +306,84 @@ Google Cloud SDK 450.0.0
 
 ## 7. GCP リソースのセットアップ
 
-### 7.1 環境変数の設定
+### 7.1 環境変数の設定とスクリプト実行
 
-ターミナルを開き、以下のコマンドを実行：
+> ⚠️ **重要 (Windows ユーザー)**: PowerShell と Git Bash は別々の環境です。
+> 環境変数の設定とスクリプト実行は **同じターミナル** で行ってください。
 
-**Windows (PowerShell)**:
-```powershell
-$env:GCP_PROJECT_ID = "あなたのプロジェクトID"
-$env:GCP_REGION = "asia-northeast1"
-$env:GITHUB_REPO = "あなたのGitHubユーザー名/ai-chat"
+---
+
+**Windows の場合 (Git Bash を使用)**:
+
+1. **Git Bash を開く**
+   - スタートメニューから「Git Bash」を検索して起動
+   - または、エクスプローラーでプロジェクトフォルダを右クリック → 「Git Bash Here」
+
+2. **環境変数を設定** (以下の値を自分のものに置き換えてください)
+   ```bash
+   # プロジェクトIDを設定（Google Cloud Consoleで確認した値）
+   export GCP_PROJECT_ID="your-project-id-123456"
+
+   # リージョンを設定（東京）
+   export GCP_REGION="asia-northeast1"
+
+   # GitHubリポジトリを設定（例: username/ai-chat）
+   export GITHUB_REPO="your-github-username/ai-chat"
+   ```
+
+3. **設定を確認**
+   ```bash
+   echo "Project: $GCP_PROJECT_ID"
+   echo "Region: $GCP_REGION"
+   echo "Repo: $GITHUB_REPO"
+   ```
+   → 正しく表示されることを確認
+
+4. **プロジェクトディレクトリに移動してスクリプトを実行**
+   ```bash
+   cd /c/Users/あなたのユーザー名/path/to/ai-chat
+   bash scripts/setup-gcp.sh
+   ```
+
+---
+
+**Mac/Linux の場合**:
+
+1. **ターミナルを開く**
+
+2. **環境変数を設定**
+   ```bash
+   export GCP_PROJECT_ID="your-project-id-123456"
+   export GCP_REGION="asia-northeast1"
+   export GITHUB_REPO="your-github-username/ai-chat"
+   ```
+
+3. **プロジェクトディレクトリに移動してスクリプトを実行**
+   ```bash
+   cd ~/path/to/ai-chat
+   chmod +x scripts/setup-gcp.sh
+   ./scripts/setup-gcp.sh
+   ```
+
+---
+
+### 7.2 エラーが出た場合
+
+**「GCP_PROJECT_ID 環境変数を設定してください」エラー**:
+```
+[ERROR] GCP_PROJECT_ID 環境変数を設定してください
 ```
 
-**Mac/Linux**:
-```bash
-export GCP_PROJECT_ID="あなたのプロジェクトID"
-export GCP_REGION="asia-northeast1"
-export GITHUB_REPO="あなたのGitHubユーザー名/ai-chat"
-```
+このエラーは環境変数が設定されていない場合に発生します。
 
-### 7.2 セットアップスクリプトの実行
+**解決方法**:
+1. 上記の手順で環境変数を設定したのと **同じターミナル** でスクリプトを実行してください
+2. ターミナルを閉じると環境変数はリセットされます
+3. `echo $GCP_PROJECT_ID` で値が表示されるか確認してください
 
-プロジェクトディレクトリに移動して、セットアップスクリプトを実行：
-
-**Mac/Linux**:
-```bash
-cd ai-chat
-chmod +x scripts/setup-gcp.sh
-./scripts/setup-gcp.sh
-```
-
-**Windows (Git Bash を使用)**:
-```bash
-cd ai-chat
-bash scripts/setup-gcp.sh
-```
+**「GITHUB_REPO 環境変数を設定してください」エラー**:
+- GitHubリポジトリをまだ作成していない場合は、先にセクション9でリポジトリを作成してください
+- 形式は `ユーザー名/リポジトリ名` です（例: `john-doe/ai-chat`）
 
 ### 7.3 スクリプトが行うこと
 
