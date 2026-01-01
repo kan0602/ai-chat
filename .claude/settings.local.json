@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx prisma init:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run test:run:*)",
+      "Bash(docker --version:*)",
+      "Bash(docker build:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

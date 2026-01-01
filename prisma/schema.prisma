@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  chats         Chat[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Chat {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  title     String?
+  userId    String    @db.ObjectId
+  user      User      @relation(fields: [userId], references: [id])
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  role      String   // "user" | "assistant"
+  chatId    String   @db.ObjectId
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([chatId])
+}
