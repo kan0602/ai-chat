@@ -141,11 +141,24 @@
 
 ## Phase 9: デプロイ準備
 
-- [ ] Dockerfile 作成
-- [ ] `.dockerignore` 作成
-- [ ] `next.config.ts` に `output: 'standalone'` 設定
-- [ ] ローカルでDockerビルド確認
-- [ ] GitHub リポジトリ作成・push
+- [x] Dockerfile 作成
+  - [x] マルチステージビルド（deps, builder, runner）
+  - [x] node:20-alpine ベースイメージ
+  - [x] Prismaクライアント対応
+  - [x] 非rootユーザーで実行
+- [x] `.dockerignore` 作成
+- [x] `next.config.ts` に `output: 'standalone'` 設定（既存）
+- [x] GitHub Actions ワークフロー作成 (`.github/workflows/deploy.yml`)
+  - [x] テストジョブ（lint, unit tests）
+  - [x] ビルド&デプロイジョブ（Cloud Run）
+  - [x] Workload Identity Federation対応
+- [x] Git 初期コミット作成
+- [ ] GitHub リポジトリ作成・push ※ユーザー側で実施
+  - 以下のコマンドでpush:
+  ```bash
+  git remote add origin https://github.com/YOUR_USERNAME/ai-chat.git
+  git push -u origin main
+  ```
 
 ## Phase 10: Cloud Run デプロイ
 
