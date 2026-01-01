@@ -3,6 +3,7 @@
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -28,8 +29,18 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       {/* Hero Section */}
       <section className="flex flex-1 flex-col items-center justify-center px-4 py-16 text-center">
+        <div className="mb-8">
+          <Image
+            src="/logo.png"
+            alt="スーテックス"
+            width={300}
+            height={59}
+            priority
+            className="dark:brightness-0 dark:invert"
+          />
+        </div>
         <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          AI Chat
+          Su-techs AI Chat
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
           エンターテイメント向けAIチャットボット。
@@ -80,7 +91,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="px-4 py-8 text-center text-gray-600 dark:text-gray-400">
-        <p>&copy; 2025 AI Chat. All rights reserved.</p>
+        <p>&copy; 2025 Su-techs AI Chat. All rights reserved.</p>
       </footer>
     </div>
   );
