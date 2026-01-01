@@ -1,9 +1,9 @@
-# ベースイメージ
-FROM node:20-alpine AS base
+# ベースイメージ (Debian slim - OpenSSL対応)
+FROM node:20-slim AS base
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 # 依存関係インストール用ステージ
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # パッケージファイルをコピー
@@ -36,8 +36,8 @@ FROM base AS runner
 WORKDIR /app
 
 # セキュリティのため非rootユーザーを作成
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN groupadd --system --gid 1001 nodejs
+RUN useradd --system --uid 1001 --gid nodejs nextjs
 
 # 環境変数を設定
 ENV NODE_ENV=production
