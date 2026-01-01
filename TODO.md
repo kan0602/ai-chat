@@ -162,19 +162,30 @@
 
 ## Phase 10: Cloud Run デプロイ
 
-- [ ] Google Cloud プロジェクト作成
-- [ ] 必要なAPIを有効化
-- [ ] Secret Manager でシークレット設定
-  - [ ] DATABASE_URL
-  - [ ] NEXTAUTH_SECRET
-  - [ ] GOOGLE_CLIENT_ID
-  - [ ] GOOGLE_CLIENT_SECRET
-  - [ ] ANTHROPIC_API_KEY
-- [ ] Cloud Run へ手動デプロイ（初回確認）
-- [ ] GitHub Actions ワークフロー作成
-- [ ] Workload Identity Federation 設定
-- [ ] 自動デプロイ確認
-- [ ] 本番環境でNextAuth URLを設定
+- [x] デプロイスクリプト作成
+  - [x] GCPセットアップスクリプト (`scripts/setup-gcp.sh`)
+    - API有効化
+    - Artifact Registry作成
+    - サービスアカウント作成
+    - Workload Identity Federation設定
+  - [x] Secret Managerセットアップスクリプト (`scripts/setup-secrets.sh`)
+    - DATABASE_URL
+    - NEXTAUTH_SECRET
+    - NEXTAUTH_URL
+    - GOOGLE_CLIENT_ID
+    - GOOGLE_CLIENT_SECRET
+    - ANTHROPIC_API_KEY
+  - [x] 手動デプロイスクリプト (`scripts/deploy.sh`)
+- [x] デプロイガイド作成 (`docs/DEPLOYMENT.md`)
+- [x] GitHub Actions ワークフロー作成（Phase 9で完了）
+- [ ] 以下はユーザー側で実施 ※
+  - [ ] Google Cloud プロジェクト作成
+  - [ ] `./scripts/setup-gcp.sh` 実行
+  - [ ] `./scripts/setup-secrets.sh` 実行
+  - [ ] GitHub Secrets設定
+  - [ ] `./scripts/deploy.sh` または GitHub push で初回デプロイ
+  - [ ] NEXTAUTH_URL更新
+  - [ ] Google OAuth許可リスト更新
 
 ## Phase 11: リリース後
 

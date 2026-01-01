@@ -9,7 +9,8 @@
       "Bash(npm run test:run:*)",
       "Bash(docker --version:*)",
       "Bash(docker build:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
